@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EMIL FASHION | Cart</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>... (same header) ...</header>
+
+<section class="cart">
+  <div class="container">
+    <h2>Your Shopping Cart</h2>
+    <div class="cart-item" id="cartContent">
+      <img src="AKASH.jpg" alt="Elegant Heels">
+    </div>
+    <div class="cart-summary">  
+      <h3 id="totalPrice">Total: 0 TK</h3>
+      <a href="checkout.html" class="btn">Checkout</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const product = JSON.parse(localStorage.getItem('selectedProduct'));
+  if (product) {
+    const cartDiv = document.getElementById('cartContent');
+    cartDiv.innerHTML = `
+      <img src="${product.image}" alt="Product" style="max-width:200px;">
+      <div>
+        <h3>${product.name}</h3>
+        <p>Price per Unit: <span id="unitPrice">${product.price}</span> TK</p>
+
+        <label for="size">Select Shoe Size:</label>
+        <select id="size">
+          ${[...Array(9).keys()].map(i => `<option value="${35+i}">${35+i}</option>`).join('')}
+        </select>
+
+        <label for="qty">Quantity:</label>
+        <input type="number" id="qty" value="1" min="1" onchange="updateTotal()" style="width:60px;">
+
+        <p id="finalPrice">Total: ${product.price} TK</p>
+      </div>
+    `;
+
+    function updateTotal() {
+      const qty = parseInt(document.getElementById('qty').value);
+      const price = parseInt(document.getElementById('unitPrice').textContent);
+      const total = qty * price;
+      document.getElementById('finalPrice').textContent = `Total: ${total} TK`;
+      document.getElementById('totalPrice').textContent = `Total: ${total} TK`;
+    }
+  }
+</script>
+
+
+<footer>... (same footer) ...</footer>
+
+</body>
+</html>

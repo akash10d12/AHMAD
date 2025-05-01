@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Detail</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .product-detail {
+      max-width: 600px;
+      margin: 2rem auto;
+      text-align: center;
+    }
+    .product-detail img {
+      width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+    .sizes {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .size-option {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+    .size-option.selected {
+      background-color: black;
+      color: white;
+    }
+    button {
+      padding: 0.7rem 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>EMIL FATION</h1>
+      <nav><a href="index.html">Home</a></nav>
+    </div>
+  </header>
+
+  <div class="product-detail">
+    <img id="productImage" src="AKASH.jpg" alt="Product" />
+    <h2 id="productName">Product Name</h2>
+    <p id="productPrice">Price: -- TK</p>
+
+    <h3>Select Shoe Size</h3>
+    <div class="sizes" id="sizeOptions"></div>
+
+    <button onclick="confirmPurchase()">Confirm Purchase</button>
+  </div>
+
+  <script>
+    const product = JSON.parse(localStorage.getItem("selectedProduct"));
+    const imgEl = document.getElementById("productImage");
+    const nameEl = document.getElementById("productName");
+    const priceEl = document.getElementById("productPrice");
+    const sizeOptions = document.getElementById("sizeOptions");
+    let selectedSize = null;
+
+    if (product) {
+      imgEl.src = product.image;
+      nameEl.textContent = product.name;
+      priceEl.textContent = `Price: ${product.price} TK`;
+    }
+
+    for (let size = 35; size <= 43; size++) {
+      const sizeBtn = document.createElement("div");
+      sizeBtn.textContent = size;
+      sizeBtn.className = "size-option";
+      sizeBtn.onclick = () => {
+        selectedSize = size;
+        document.querySelectorAll(".size-option").forEach(btn => btn.classList.remove("selected"));
+        sizeBtn.classList.add("selected");
+      };
+      sizeOptions.appendChild(sizeBtn);
+    }
+
+    function confirmPurchase() {
+      if (!selectedSize) {
+        alert("Please select a shoe size.");
+        return;
+      }
+      alert(`You selected size ${selectedSize} for ${product.name}`);
+      // You could also add to cart here
+    }
+  </script>
+
+</body>
+</html>
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Place Your Order | EMIL FATION</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .order-form img {
+      width: 250px;
+      margin-bottom: 20px;
+    }
+    .order-form select, .order-form input, .order-form textarea {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>EMIL FATION</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="manwoman.html">Shoes</a>
+        <a href="cart.html">Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="order-form container">
+    <h2>Place Your Order</h2>
+    
+    <img id="product-image" src="" alt="Selected Product">
+    <form id="orderForm" onsubmit="submitOrder(event)">
+      <label for="size">Select Shoe Size:</label>
+      <select id="size" required>
+        <option value="">Choose a size</option>
+        <option value="35">35</option>
+        <option value="36">36</option>
+        <option value="37">37</option>
+        <option value="38">38</option>
+        <option value="39">39</option>
+        <option value="40">40</option>
+        <option value="41">41</option>
+        <option value="42">42</option>
+        <option value="43">43</option>
+      </select>
+
+      <label for="fullname">Full Name:</label>
+      <input type="text" id="fullname" required>
+
+      <label for="address">Delivery Address:</label>
+      <textarea id="address" required></textarea>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" required>
+
+      <button type="submit" class="btn">Submit Order</button>
+    </form>
+  </section>
+
+  <script>
+    // Load selected product image from localStorage
+    const imageSrc = localStorage.getItem("selectedProductImage");
+    if (imageSrc) {
+      document.getElementById("product-image").src = imageSrc;
+    }
+
+    function submitOrder(event) {
+      event.preventDefault();
+      const size = document.getElementById("size").value;
+      const name = document.getElementById("fullname").value;
+      const address = document.getElementById("address").value;
+      const phone = document.getElementById("phone").value;
+
+      alert("Order placed successfully!\n" +
+            "Name: " + name + "\n" +
+            "Size: " + size + "\n" +
+            "Phone: " + phone + "\n" +
+            "Address: " + address);
+    }
+  </script>
+</body>
+</html>

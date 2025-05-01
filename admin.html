@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cart - EMIL FATION</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>EMIL FATION</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="manwoman.html">Shoes</a>
+      <a href="cart.html" class="active">Cart</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </div>
+</header>
+
+<section class="cart-section">
+  <div class="container">
+    <h2>Your Cart</h2>
+    <div class="cart-item">
+      <img id="cart-image" src="AKASH.jpg" alt="Product Image">
+      <div class="cart-details">
+        <h3 id="cart-name">Elegant Heels</h3>
+        <p>Price per unit: <span id="cart-price">999</span> TK</p>
+
+        <label for="size">Shoe Size:</label>
+        <select id="size">
+          <option value="35">35</option>
+          <option value="36">36</option>
+          <option value="37">37</option>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="43">43</option>
+        </select>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1" max="10" onchange="updateTotal()">
+
+        <p>Total: <span id="total">999</span> TK</p>
+        <button class="btn checkout-btn">Proceed to Checkout</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 EMIL FATION. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  function updateTotal() {
+    const unitPrice = parseInt(document.getElementById("cart-price").textContent);
+    const quantity = parseInt(document.getElementById("quantity").value);
+    const total = unitPrice * quantity;
+    document.getElementById("total").textContent = total;
+  }
+
+  // Load cart data from localStorage
+  window.onload = () => {
+    const data = JSON.parse(localStorage.getItem('cartProduct'));
+    if (data) {
+      document.getElementById("cart-name").textContent = data.name;
+      document.getElementById("cart-price").textContent = data.price;
+      document.getElementById("cart-image").src = data.image;
+      document.getElementById("total").textContent = data.price;
+    }
+  };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EMIL FATION  | Checkout</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "YOUR-API-KEY",
+    authDomain: "YOUR-PROJECT.firebaseapp.com",
+    projectId: "YOUR-PROJECT-ID",
+    storageBucket: "YOUR-PROJECT.appspot.com",
+    messagingSenderId: "YOUR-MSG-ID",
+    appId: "YOUR-APP-ID"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+
+</head>
+<body>
+
+<header>... (same header) ...</header>
+
+<section class="checkout">
+  <div class="container">
+    <h2>Checkout</h2>
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="text" placeholder="Shipping Address" required>
+      <input type="email" placeholder="Email" required>
+      <input type="text" placeholder="Mobaile number " required>
+      <button class="btn">Place Order</button>
+    </form>
+  </div>
+</section>
+
+<footer>... (same footer) ...</footer>
+
+</body>
+</html>
